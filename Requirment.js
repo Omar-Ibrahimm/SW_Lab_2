@@ -1,13 +1,13 @@
 /*IMPORTANT NOTES
 1- you are using JS Name Casing (CamelCasing)
 2- make this code as clean as possible 
-3- apply all the concepts you learned during this lab (Naming, comments,  functions)
+3- apply all the concePoints you learned during this lab (Naming, comments,  functions)
 */
 
-class pt {
-  constructor(coordX, coordY) {
-    this.coordX = coordX;
-    this.coordY = coordY;
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
 }
 
@@ -63,15 +63,15 @@ class Rectangle {
   }
 
   printEndPoints() {
-    const topRight = this.topLeftPoint.coordX + this.width;
-    const bottomLeft = this.topLeftPoint.coordY + this.height;
+    const topRight = this.topLeftPoint.x + this.width;
+    const bottomLeft = this.topLeftPoint.y + this.height;
     console.log("End Point X-Axis (Top Right): " + topRight);
     console.log("End Point Y-Axis (Bottom Left): " + bottomLeft);
   }
 }
 
 function buildRectangle(x, y, width, height) {
-  const mainPoint = new pt(x, y);
+  const mainPoint = new Point(x, y);
   const rect = new Rectangle(mainPoint, width, height);
   return rect;
 }
@@ -80,16 +80,20 @@ function buildSquare(x, y, length) {
   if (!length || length <= 0) {
     throw Error("invalid Length");
   }
-  let square = buildRectangle(x, y, length, length);
+  const square = buildRectangle(x, y, length, length);
+  return square;
+}
+
+function logSquareInfo(square) {
   const squareArea = square.getArea();
   const squarePerimeter = square.getPerimeter();
   console.log("square Area ", squareArea);
   console.log("square Perimeter ", squarePerimeter);
-  return square;
 }
 
 const rectangleObject = buildRectangle(2, 3, 5, 4);
 const squareObject = buildSquare(2, 3, 5);
+logSquareInfo(squareObject);
 
 console.log(squareObject.getPerimeter());
 squareObject.printEndPoints();
